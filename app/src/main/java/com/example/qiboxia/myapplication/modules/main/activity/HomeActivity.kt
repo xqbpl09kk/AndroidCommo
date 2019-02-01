@@ -6,6 +6,8 @@ import com.example.qiboxia.myapplication.R
 import com.example.qiboxia.myapplication.base.activity.BaseActivity
 import com.example.qiboxia.myapplication.modules.main.adapter.MainAdapter
 import com.example.qiboxia.myapplication.utils.DialogUtils
+import com.example.qiboxia.myapplication.utils.RxUtils
+import com.example.qiboxia.myapplication.utils.rxjava.Creation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : BaseActivity() {
@@ -24,26 +26,17 @@ class HomeActivity : BaseActivity() {
         adapter = MainAdapter(this)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
-        adapter?.addItem("dsadjkldjsa")
-        adapter?.addItem("dsadjkldjsa")
-        adapter?.addItem("dsadjkldjsa")
-        adapter?.addItem("dsadjkldjsa")
-        adapter?.addItem("dsadjkldjsa")
-
-//        val intent = Intent(this@HomeActivity , JobService::class.java)
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            startForegroundService(intent)
-//        }else{
-//            startService(intent)
-//        }
-        DialogUtils.createOptionalDialog("hahahhaahaha" , object : DialogInterface.OnClickListener {
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-
-            }
-        })
-
+//        DialogUtils.createOptionalDialog("1" , DialogInterface.OnClickListener { _, _ -> })
+//        RxUtils.just()
+//        RxUtils.createObservable()
+//        RxUtils.createObserver()
+        Creation.defer()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        RxUtils.cancel()
+    }
 
     private fun showDialog(){
 
