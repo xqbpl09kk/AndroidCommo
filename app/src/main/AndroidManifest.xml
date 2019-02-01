@@ -3,22 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.qiboxia.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".application.SApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".base.SApplication"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".modules.main.activity.MainActivity">
+        <activity android:name=".modules.main.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".modules.sign.activity.SignInActivity" />
+        <activity android:name=".modules.sign.activity.SignOutActivity" />
+        <activity android:name=".modules.order.activity.OrderListActivity" />
+        <activity android:name=".modules.webview.CommonWebViewActivity" />
+
+        <service android:name="com.example.qiboxia.myapplication.modules._services.JobService" />
+
+        <receiver
+            android:name="com.example.qiboxia.myapplication.modules._receiver.AppReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.PACKAGE_INSTALL"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.WALLPAPER_CHANGED"/>
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

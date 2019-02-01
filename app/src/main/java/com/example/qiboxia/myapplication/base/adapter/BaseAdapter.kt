@@ -19,24 +19,33 @@ import com.example.qiboxia.myapplication.base.adapter.holder.BaseHolder
  * 邮   箱: bob.xia@xiangwushuo.com
  * 修改备注：
  */
-abstract class BaseAdapter<T> (protected  val context : Context)
-    :RecyclerView.Adapter<BaseHolder<T>>() {
+abstract class BaseAdapter<T , H :BaseHolder<T>> (protected  val context : Context) :RecyclerView.Adapter<H>() {
 
     protected val data : ArrayList<T> = arrayListOf()
 
+
     override fun getItemCount(): Int {
-        return data.size
+        return  data.size
     }
 
-    override fun onBindViewHolder(holder: BaseHolder<T>, position: Int) {
+
+    override fun onBindViewHolder(holder: H, position: Int) {
         holder.bindData(data[position])
     }
 
 
-    fun updateData(items : ArrayList<T>){
+    fun updateData(items : ArrayList<T>?){
         data.clear()
         notifyDataSetChanged()
-        addData(items)
+        items?.let { addData(it) }
+    }
+
+    fun addData(items : ArrayList<T>?){
+        items?.let {
+            val startPosition = data.size
+            data.addAll(it)
+            notifyItemRangeInserted(startPosition , it.size)
+        }
     }
 
     fun removeItem(position : Int){
@@ -45,14 +54,10 @@ abstract class BaseAdapter<T> (protected  val context : Context)
         notifyItemRemoved(position)
     }
 
-    fun addData(items : ArrayList<T>){
-        val startPosition = data.size
-        data.addAll(items)
-        notifyItemRangeInserted(startPosition , items.size)
-    }
-
     fun addItem(item : T){
         data.add(item)
         notifyItemInserted(data.indexOf(item))
     }
+
+
 }

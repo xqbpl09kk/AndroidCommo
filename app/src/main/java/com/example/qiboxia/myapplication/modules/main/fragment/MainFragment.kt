@@ -8,10 +8,10 @@
 package com.example.qiboxia.myapplication.modules.main.fragment;
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.qiboxia.myapplication.base.fragment.BaseFragment
 
 /**
  * 文 件 名: MainFragment
@@ -20,7 +20,7 @@ import android.view.ViewGroup
  * 邮   箱: bob.xia@xiangwushuo.com
  * 修改备注：
  */
-public class MainFragment :Fragment() {
+public class MainFragment :BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return super.onCreateView(inflater, container, savedInstanceState)

@@ -10,6 +10,7 @@ package com.example.qiboxia.myapplication.base.adapter.holder;
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 
 /**
@@ -19,11 +20,9 @@ import android.view.ViewGroup
  * 邮   箱: bob.xia@xiangwushuo.com
  * 修改备注：
  */
-abstract class BaseHolder<T>(layout: Int, cxt: Context, parent: ViewGroup?)
-    : RecyclerView.ViewHolder(LayoutInflater.from(cxt).inflate(layout, parent, false))
-        , AdapterItemListener<T> {
-
-    protected var context : Context = cxt
+abstract class BaseHolder<T> : RecyclerView.ViewHolder, AdapterItemListener<T> {
+    constructor(view : View) :super(view)
+    constructor(layout: Int, cxt: Context, parent: ViewGroup?) : super(LayoutInflater.from(cxt).inflate(layout, parent, false))
 
     protected var data  :T ? =null
 
