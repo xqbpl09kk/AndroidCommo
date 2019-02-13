@@ -10,6 +10,7 @@ package com.example.qiboxia.myapplication.base.activity;
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.KeyEvent
@@ -21,9 +22,15 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
+    companion object {
+        var appContext = SApplication.getInstance()
+    }
+
     protected var mToolbar  : Toolbar ? =null
-    protected var appContext = SApplication.getInstance()
-    protected lateinit var lifecycleRegistry : LifecycleRegistry  
+
+    protected lateinit var lifecycleRegistry : LifecycleRegistry
+
+    protected val uiHandler by lazy {  Handler()  }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +66,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onDestroy()
         lifecycleRegistry.markState(Lifecycle.State.DESTROYED)
         SApplication.getInstance().removeActivity(this)
+        uiHandler.removeCallbacks(null)
     }
 
     override fun getLifecycle(): Lifecycle{

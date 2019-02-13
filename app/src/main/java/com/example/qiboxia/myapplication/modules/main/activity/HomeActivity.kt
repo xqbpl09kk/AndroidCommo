@@ -30,12 +30,14 @@ class HomeActivity : BaseActivity() {
 //        RxUtils.just()
 //        RxUtils.createObservable()
 //        RxUtils.createObserver()
-        Creation.defer()
+        Creation.intervalRange()
+        appContext.removeActivity(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         RxUtils.cancel()
+        Creation.cancel()
     }
 
     private fun showDialog(){

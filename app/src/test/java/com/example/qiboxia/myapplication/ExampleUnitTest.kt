@@ -61,4 +61,55 @@ class ExampleUnitTest {
         System.out.println("false true :${false.xor(true)}")
         System.out.println("false false :${false.xor(false)}")
     }
+
+
+    @Test
+    fun formatAdd() {
+        var address = "内蒙古自治区,涕淋过了盟,二连浩特区,11"
+        address.removeSurrounding(",")
+        val areaLevelCount = 4
+        if(address.split(",").size == areaLevelCount){
+            System.out.println("address is $address")
+            return
+        }
+        address = address.replace("," ,"")
+        var resultAdd = StringBuilder()
+        val provinceRegular = arrayListOf("省" ,"自治区", "特别行政区" , "市")
+        val areaRegular = arrayListOf("地区" ,"自治州", "盟" ,"直辖县级行政区划" ,"市","县")
+        val countyRegular = arrayListOf("县" , "市" , "区" ,"旗")
+        var tempAdd  = address
+        for(province in provinceRegular){
+            if(tempAdd.contains(province)){
+                tempAdd = address.replaceFirst(province , "$province,")
+                resultAdd .append( tempAdd.substring(0 ,tempAdd.indexOf(",") +1))
+                tempAdd = tempAdd.substring(tempAdd.indexOf(",")  +1, tempAdd.length)
+                break
+            }
+        }
+        for(area in areaRegular){
+            if(tempAdd.contains(area)){
+                tempAdd = tempAdd.replaceFirst(area , "$area,")
+                resultAdd.append(tempAdd.substring(0 , tempAdd.indexOf(",") +1))
+                tempAdd = tempAdd.substring(tempAdd.indexOf("," ) +1 , tempAdd.length)
+                break
+            }
+        }
+
+        for(county in countyRegular){
+            if(tempAdd.contains(county)){
+                tempAdd = tempAdd.replaceFirst(county , "$county,")
+                resultAdd .append(tempAdd)
+                break
+            }
+        }
+        System.out.println("address is $resultAdd")
+    }
+
+
+    @Test
+    fun removeSurunding(){
+        var test = ",1,,"
+        test = test.removeSurrounding(",")
+        System.out.println(test)
+    }
 }

@@ -149,8 +149,52 @@ object Creation {
     }
 
     /**
-     *
+     * timer ： 定时发送值为0的
      */
+    fun timer(tag :String = "Main"){
+        val observable = Observable.timer(5 , TimeUnit.SECONDS)
+        observable.subscribe({
+            Log.e(TAG  , "on timer $it" )
+        } , {
+
+        }).add(tag)
+    }
+
+    /**
+     * interval ： 每隔一段时间发送一个事件，返回的值从0不断增长
+     */
+    fun interval(tag :String = "Main") {
+        val observable = Observable.interval(2 , TimeUnit.SECONDS)
+        observable.subscribe({
+            Log.e(TAG , "interval  $it")
+        } ,{
+
+        }).add(tag)
+    }
+
+    /**
+     * intervalRange() :在interval基础上指定开始值和范围
+     */
+    fun intervalRange(tag : String = "Main"){
+        val observable = Observable.intervalRange(11 , 20 , 0 , 2 , TimeUnit.SECONDS)
+        observable.subscribe({
+            Log.e(TAG , "interval range $it")
+        } ,{
+
+        }).add(tag)
+    }
+
+    /**
+     * range
+     */
+    fun range(tag: String = "Main"){
+        val observable = Observable.range(1 , 20)
+        observable.subscribe({
+            Log.e(TAG , "interval range $it")
+        } ,{
+
+        }).add(tag)
+    }
 
     /**
      * 创建observable
