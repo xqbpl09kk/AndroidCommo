@@ -5,7 +5,7 @@
  * 邮   箱: bob.xia@xiangwushuo.com
  * 修改备注：
  */
-package com.example.qiboxia.myapplication.base.activity;
+package com.example.qiboxia.myapplication.base.activity
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleRegistry
@@ -100,6 +100,11 @@ abstract class BaseActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    open fun getCode() :Int{
+        return 0
     }
 
 

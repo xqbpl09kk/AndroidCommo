@@ -17,3 +17,5 @@ data class OrderEvent(var event: OrderEvents) {
 }
 
 data class ServiceEvent(var code : Int , val msg :String)
+
+data class ActivityEvent(var activityCode : Int , val msg : String)
