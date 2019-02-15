@@ -1,4 +1,6 @@
-package com.example.qiboxia.myapplication.utils.rxjava
+@file:Suppress("NOTHING_TO_INLINE")
+
+package com.example.qiboxia.myapplication.utils
 
 import io.reactivex.disposables.Disposable
 

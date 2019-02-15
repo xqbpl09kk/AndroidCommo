@@ -1,25 +1,21 @@
 package com.example.qiboxia.myapplication.modules.main.activity
 
-import android.app.Activity
-import android.content.DialogInterface
-import android.content.Intent
+import android.content.res.Configuration
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.example.qiboxia.myapplication.R
 import com.example.qiboxia.myapplication.application.SApplication
-import com.example.qiboxia.myapplication.base.activity.BaseActivity
 import com.example.qiboxia.myapplication.base.activity.ServiceBindActivity
 import com.example.qiboxia.myapplication.base.listener.LoginStatusListener
 import com.example.qiboxia.myapplication.modules.main.adapter.MainAdapter
-import com.example.qiboxia.myapplication.modules.webview.CommonWebViewActivity
 import com.example.qiboxia.myapplication.network.data.User
-import com.example.qiboxia.myapplication.utils.DialogUtils
 import com.example.qiboxia.myapplication.utils.RxUtils
-import com.example.qiboxia.myapplication.utils.rxjava.Conversion
-import com.example.qiboxia.myapplication.utils.rxjava.Creation
-import com.example.qiboxia.myapplication.utils.rxjava.add
+import com.example.qiboxia.myapplication.utils.add
+import com.example.qiboxia.myapplication.utils.rxjava.Combination
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.Serializable
 
 class HomeActivity : ServiceBindActivity<Any>() {
     override fun networkStep() {
@@ -57,7 +53,21 @@ class HomeActivity : ServiceBindActivity<Any>() {
 //        Conversion.map()
 //        appContext.removeActivity(this)
 //        startActivity(Intent(this ,CommonWebViewActivity::class.java))
-        Conversion.buffer()
+//        Conversion.buffer()
+//        startActivity(Intent(this , OrderListActivity::class.java))
+
+//        Conversion.filter()
+
+//        Combination.concatArray()
+//        Combination.concatArrayDelayError()
+        Combination.reduce()
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val code = savedInstanceState?.getInt("hash_code")
+        Log.e("MainActivity" , "onCreate code is $code")
     }
 
 
@@ -89,6 +99,33 @@ class HomeActivity : ServiceBindActivity<Any>() {
                 .subscribe{it.onLogout()}
                 .add("Login")
     }
+
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val code = savedInstanceState?.getInt("hash_code")
+        Log.e("MainActivity" , "onRestoreInstanceState code is $code")
+    }
+
+    /**
+     * outState must be received in onRestoreInstanceState , but must not in onCreate.
+     */
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putInt("hash_code"  ,1001)
+        outState?.putSerializable("obj" , Obj())
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+    }
+
+
+    class Obj : Serializable{
+        val value1 : Int= 0
+        val value2 : String  ?= null
+    }
+
 
 
 

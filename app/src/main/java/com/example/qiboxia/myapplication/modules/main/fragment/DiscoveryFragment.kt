@@ -7,9 +7,13 @@
  */
 package com.example.qiboxia.myapplication.modules.main.fragment;
 
+import com.example.qiboxia.myapplication.R
 import com.example.qiboxia.myapplication.base.fragment.BaseFragment
 
 public class DiscoveryFragment : BaseFragment() {
+    override fun getTitle(): String {
+        return getString(R.string.discovery)
+    }
 
 
 }

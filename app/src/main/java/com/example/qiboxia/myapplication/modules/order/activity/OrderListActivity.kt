@@ -5,6 +5,9 @@ import com.example.qiboxia.myapplication.R
 import com.example.qiboxia.myapplication.modules.order.adapter.OrderListAdapter
 import com.example.qiboxia.myapplication.modules.order.adapter.holder.OrderHolder
 import com.example.qiboxia.myapplication.base.activity.BaseListActivity
+import com.example.qiboxia.myapplication.base.activity.ScrollPageActivity
+import com.example.qiboxia.myapplication.base.fragment.BaseFragment
+import com.example.qiboxia.myapplication.modules.order.fragment.OrderListFragment
 import com.example.qiboxia.myapplication.network.data.OrderListItem
 import com.example.qiboxia.myapplication.network.data.User
 
@@ -15,29 +18,18 @@ import com.example.qiboxia.myapplication.network.data.User
  * 邮   箱: bob.xia@xiangwushuo.com
  * 修改备注：
  */
-class OrderListActivity : BaseListActivity<OrderListItem , OrderHolder ,OrderListAdapter>(){
-    override fun onLogin(user: User) {
-
-    }
-
-    override fun onLogout() {
-    }
-
-    override fun initAdapter(): OrderListAdapter {
-        return OrderListAdapter(this)
-    }
-
-    override fun networkStep() {
-    }
-
-    override fun getLayoutRes(): Int {
-        return R.layout.activity_order_list
+class OrderListActivity : ScrollPageActivity(){
+    override fun getFragmentList(): ArrayList<out BaseFragment> {
+        val arrayList = arrayListOf<OrderListFragment>()
+        arrayList.add(OrderListFragment())
+        arrayList.add(OrderListFragment())
+        arrayList.add(OrderListFragment())
+        return arrayList
     }
 
     override fun getActTitle(): String {
-        return getString(R.string.order_list)
+        return getString(R.string.my_order)
     }
-
 
 
 }

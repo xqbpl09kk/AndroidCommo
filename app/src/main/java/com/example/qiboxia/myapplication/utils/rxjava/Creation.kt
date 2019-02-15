@@ -2,19 +2,16 @@
 
 package com.example.qiboxia.myapplication.utils.rxjava
 
-import android.os.Build
-import android.support.annotation.RequiresApi
 import android.util.Log
+import com.example.qiboxia.myapplication.utils.add
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
-import io.reactivex.ObservableSource
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.Callable
 import java.util.concurrent.Future
 import java.util.concurrent.FutureTask
 import java.util.concurrent.TimeUnit
-import java.util.function.Consumer
 
 /**
  * 文 件 名: Creation

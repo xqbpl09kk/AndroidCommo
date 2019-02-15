@@ -1,6 +1,7 @@
 package com.example.qiboxia.myapplication.utils.rxjava
 
 import android.util.Log
+import com.example.qiboxia.myapplication.utils.add
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
@@ -136,6 +137,20 @@ object Conversion {
 //
 //        }).add(TAG)
     }
+
+
+    fun filter(){
+        Observable.just(1,2,3,4,5)
+                .filter { it % 2 == 0 }
+                .map { it * it }
+                .subscribe({
+                    Log.e("Main" , "filter result is $it")
+                } ,{
+
+                }).add(TAG)
+    }
+
+
 
 
     fun getData() : ArrayList<Person>{

@@ -15,4 +15,10 @@
     <style name="ToolbarTitleApp" parent= "TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/toolbar_title_size</item>
     </style>
+
+
+
+    <style name="TabTextStyle" parent = "TextAppearance.Design.Tab">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

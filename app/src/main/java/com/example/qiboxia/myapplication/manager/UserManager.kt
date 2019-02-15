@@ -1,11 +1,9 @@
 package com.example.qiboxia.myapplication.manager
 
-import android.app.Activity
 import com.example.qiboxia.myapplication.application.SApplication
-import com.example.qiboxia.myapplication.base.activity.ServiceBindActivity
 import com.example.qiboxia.myapplication.base.listener.LoginStatusListener
 import com.example.qiboxia.myapplication.network.data.OAuthUser
-import com.example.qiboxia.myapplication.utils.rxjava.add
+import com.example.qiboxia.myapplication.utils.add
 import io.reactivex.Observable
 
 /**

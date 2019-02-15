@@ -36,4 +36,6 @@ abstract class BaseFragment : Fragment() {
         super.onDestroy()
         SApplication.getInstance().removeFragment(this)
     }
+
+    abstract fun getTitle() : String
 }

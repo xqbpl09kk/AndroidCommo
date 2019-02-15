@@ -5,4 +5,9 @@
     <string name="sign_out">登出</string>
     <string name="order_list">订单列表</string>
     <string name="web_view_title">title</string>
+    <string name="mine">我的</string>
+    <string name="main_page">首页</string>
+    <string name="message">消息</string>
+    <string name="discovery">发现</string>
+    <string name="my_order">我的订单</string>
 </resources>
