@@ -3,4 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/toolbar"/>
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/progress_bar"/>
+    <WebView android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/webView"/>
+
 </LinearLayout>

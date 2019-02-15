@@ -10,7 +10,9 @@ package com.example.qiboxia.myapplication.application;
 import android.app.Application
 import com.example.common.app.LogUtils
 import com.example.qiboxia.myapplication.base.activity.BaseActivity
+import com.example.qiboxia.myapplication.base.fragment.BaseFragment
 import java.util.*
+import kotlin.collections.HashSet
 
 /**
  * 文 件 名: SApplication
@@ -33,6 +35,7 @@ class SApplication : Application() {
     }
 
     private val activityStack : Stack<BaseActivity> = Stack()
+    private val fragmentSet : HashSet<BaseFragment> = HashSet()
 
     override fun onCreate() {
         super.onCreate()
@@ -57,10 +60,26 @@ class SApplication : Application() {
         LogUtils.i(TAG  , "before removeActivity size is ${activityStack.size}")
     }
 
+    fun addFragment(fragment: BaseFragment){
+        fragmentSet.add(fragment)
+    }
+
+    fun removeFragment(fragment: BaseFragment){
+        fragmentSet.remove(fragment)
+    }
+
     fun currentActivity() : BaseActivity?{
         if(activityStack.isNotEmpty())
             return activityStack.lastElement()
         return null
+    }
+
+    fun getActivities() : Stack<BaseActivity>{
+        return activityStack
+    }
+
+    fun getFragments() : HashSet<BaseFragment>{
+        return fragmentSet
     }
 
 }

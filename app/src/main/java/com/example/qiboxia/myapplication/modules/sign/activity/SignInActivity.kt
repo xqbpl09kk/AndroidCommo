@@ -7,8 +7,10 @@
  */
 package com.example.qiboxia.myapplication.modules.sign.activity;
 
+import android.util.Log
 import com.example.qiboxia.myapplication.R
 import com.example.qiboxia.myapplication.base.activity.ServiceBindActivity
+import com.example.qiboxia.myapplication.network.data.User
 
 /**
  * 文 件 名: SignInActivity
@@ -18,6 +20,14 @@ import com.example.qiboxia.myapplication.base.activity.ServiceBindActivity
  * 修改备注：
  */
 public class SignInActivity :ServiceBindActivity<Any>(){
+    override fun onLogin(user: User) {
+        finish()
+    }
+
+    override fun onLogout() {
+        Log.e("SignInActivity"  , "Log out ")
+    }
+
     override fun networkStep() {
     }
 

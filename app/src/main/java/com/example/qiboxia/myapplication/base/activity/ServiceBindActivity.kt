@@ -7,6 +7,8 @@
  */
 package com.example.qiboxia.myapplication.base.activity;
 
+import com.example.qiboxia.myapplication.base.listener.LoginStatusListener
+import com.example.qiboxia.myapplication.network.data.User
 import com.example.qiboxia.myapplication.third_party.SignInEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -18,7 +20,7 @@ import org.greenrobot.eventbus.Subscribe
  * 邮   箱: bob.xia@xiangwushuo.com
  * 修改备注：
  */
-abstract class ServiceBindActivity<T> : BaseActivity() {
+abstract class ServiceBindActivity<T> : BaseActivity()  , LoginStatusListener {
 
     protected var t :T ?= null
 
@@ -54,4 +56,9 @@ abstract class ServiceBindActivity<T> : BaseActivity() {
             }
         }
     }
+
+
+    abstract override fun onLogin(user: User)
+
+    abstract override fun onLogout()
 }

@@ -25,7 +25,7 @@ import java.util.function.Consumer
  */
 object Creation {
     private val TAG = "RxUtils"
-    private val disposables: HashMap<String, HashSet<Disposable>> = hashMapOf()
+
 
 
     /**
@@ -229,28 +229,28 @@ object Creation {
     }
 
 
-    private inline fun Disposable.add(tag: String?) {
-        addTo(tag, this)
-    }
+//    private inline fun Disposable.add(tag: String?) {
+//        addTo(tag, this)
+//    }
 
 
-    private fun addTo(tag: String?, disposable: Disposable) {
-        val set = disposables[tag]
-        set?.let {
-            it.add(disposable)
-        } ?: HashSet<Disposable>().let {
-            it.add(disposable)
-            disposables.put(tag ?: "", it)
-        }
-    }
-
-    fun cancel(tag: String? = "Main") {
-        val set = disposables[tag]
-        set?.let {
-            for (item in set) {
-                item.dispose()
-            }
-            disposables.remove(tag)
-        }
-    }
+//     fun addTo(tag: String?, disposable: Disposable) {
+//        val set = disposables[tag]
+//        set?.let {
+//            it.add(disposable)
+//        } ?: HashSet<Disposable>().let {
+//            it.add(disposable)
+//            disposables.put(tag ?: "", it)
+//        }
+//    }
+//
+//    fun cancel(tag: String? = "Main") {
+//        val set = disposables[tag]
+//        set?.let {
+//            for (item in set) {
+//                item.dispose()
+//            }
+//            disposables.remove(tag)
+//        }
+//    }
 }
