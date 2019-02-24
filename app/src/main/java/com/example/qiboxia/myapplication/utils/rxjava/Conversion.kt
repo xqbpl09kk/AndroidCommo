@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.qiboxia.myapplication.utils.add
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
+import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function
 
 /**
@@ -150,7 +151,70 @@ object Conversion {
                 }).add(TAG)
     }
 
+    /**
+     * groupBy : 将发送的数据进行分组， 每个分组都会返回一个被观察者
+     */
+    fun groupBy(){
+//        Observable.just(1,2,3,4,5)
+//                .groupBy (object : Function<Int , Int> {
+//                    override fun apply(t: Int): Int {
+//                        return t %3
+//                    }
+//                }).subscribe({
+//                    Log.e(TAG , "group buy result is $it")
+//                } , {
+//
+//                }).add(TAG)
+        Observable.just(1,2,3,4,5)
+                .groupBy (object : Function<Int , Int> {
+                    override fun apply(t: Int): Int {
+                        return t %3
+                    }
+                }).filter {
+                    it.key?.rem(3) ?: 0 == 0
+                }.subscribe({groupedObserver ->
+                    groupedObserver.subscribe({
+                        Log.e(TAG , "groupedObserver is ${groupedObserver.key} ,group buy result is $it")
+                    } ,{
 
+                    }).add(TAG)
+                } ,{
+
+                }).add(TAG)
+    }
+
+    /**
+     *scan ： 将数据按照一定逻辑聚合起来
+     */
+    fun scan(){
+        Observable.just(1,2,3,4,5)
+                .scan(object : BiFunction<Int, Int, Int> {
+                    override fun apply(t1: Int, t2: Int): Int {
+                        return t1 + t2
+                    }
+                }).subscribe({
+                    Log.e(TAG, "scan result is $it")
+                } ,{
+
+                }).add(TAG)
+    }
+
+    /**
+     * window :
+     */
+    fun window (){
+        Observable.just(1,2,3,4,5)
+                .window(2)
+                .subscribe({
+                    it.subscribe({
+                        Log.e(TAG, " window result is $it.")
+                    } ,{
+
+                    }).add(TAG)
+                } ,{
+
+                }).add(TAG)
+    }
 
 
     fun getData() : ArrayList<Person>{

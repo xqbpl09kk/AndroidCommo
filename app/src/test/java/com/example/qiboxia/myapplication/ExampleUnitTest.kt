@@ -1,6 +1,7 @@
 package com.example.qiboxia.myapplication
 
 import android.util.Log
+import org.json.JSONObject
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -112,4 +113,34 @@ class ExampleUnitTest {
         test = test.removeSurrounding(",")
         System.out.println(test)
     }
+
+    @Test
+    fun testLength(){
+        val number = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+        val words = "好1234567890"
+        System.out.println("number length is ${number.length}")
+        System.out.println("words length is ${words.length}")
+    }
+
+    @Test
+    fun testSubStr(){
+        val str = "/pages/home/detail/index?code=101&topicId=746F145Z1D0S69303252137031&code=123"
+        System.out.print("code is :${str.substring(str.indexOf("code=") +5 , str.indexOf("&"))}")
+    }
+
+
+    @Test
+    fun str(){
+        var s :String ?= null
+        val l :Long ?= null
+        val jsonObject = JSONObject("{}")
+        val re  = jsonObject.optString("ah")
+
+    }
+
 }

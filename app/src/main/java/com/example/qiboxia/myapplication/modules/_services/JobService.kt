@@ -7,6 +7,7 @@
  */
 package com.example.qiboxia.myapplication.modules._services;
 
+import android.app.IntentService
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -15,18 +16,22 @@ import com.example.qiboxia.myapplication.third_party.ServiceEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class JobService  : Service(){
+class JobService  : IntentService("from notification"){
+    override fun onHandleIntent(intent: Intent?) {
+        Log.e("JobService" , "on HandlerIntent")
+    }
+
     private var count = 0
 
     override fun onCreate() {
         super.onCreate()
         EventBus.getDefault().register(this)
-        Thread(Runnable {
-            while(true){
-                Log.e("JobService" , " running $count")
-                count ++
-            }
-        }).start()
+//        Thread(Runnable {
+//            while(true){
+//                Log.e("JobService" , " running $count")
+//                count ++
+//            }
+//        }).start()
     }
     override fun onBind(intent: Intent?): IBinder? {
         return null
