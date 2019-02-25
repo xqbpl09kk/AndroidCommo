@@ -22,10 +22,17 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
+
 dependencies {
     implementation project(':flutter')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':common')
+    implementation(name:'common-release', ext:'aar')
+//    implementation project(path: ':common')
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
